@@ -1,10 +1,12 @@
 #!/bin/bash
-PS3="Informe a Operação de arquivo desejada: "
-select Pastas in criar renomear apagar nenhuma
+MensagemInicial="Informe a Operação de arquivo desejada: "
+echo $MensagemInicial
+select Pastas in criar renomear apagar nenhuma visualizarDocker
 do
 echo "Escolheu $Pastas "
 
-case $Pastas in criar)
+case $Pastas in
+criar)
   echo "Qual é o nome do arquivo?"
   read MinhaPasta
   mkdir $MinhaPasta
@@ -14,7 +16,7 @@ renomear)
   ls
   echo "Qual é o nome da Pasta Antiga?"
   read PastaAntiga
-  echo "Qual é o nome da Pasta Antiga?"
+  echo "Qual é o nome da Pasta Nova?"
   read PastaNova
   mv ./$PastaAntiga ./$PastaNova
   ls ;;
@@ -28,6 +30,9 @@ apagar)
 nenhuma)
   echo "A opção $Pastas nao sera suportada"
   break;;
+visualizarDocker)
+  docker ps
+  ;;
 *)echo "ERRO: Opções nao suportada nesta etapa";;
 esac
 break;
